@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://c4pehegwfu8wa"]
+[gd_scene load_steps=18 format=4 uid="uid://c4pehegwfu8wa"]
 
 [ext_resource type="Texture2D" uid="uid://r8oobfvnldlt" path="res://Assets/Elora's Art/FallTileSet.png" id="1_kry3j"]
 [ext_resource type="Texture2D" uid="uid://6411ux3vcmh0" path="res://Assets/Elora's Art/SpringTileSet.png" id="2_21xkr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dfypvp008vdsu" path="res://Assets/Elora's Art/Nature in progress.png" id="6_6bp64"]
 [ext_resource type="Texture2D" uid="uid://22hjwuxuuyug" path="res://Assets/Antarcticbees/FULL VERSION Interior-Cozy Cottage Tileset by antarcticbees/wallpapers_and_floors.png" id="6_344ge"]
 [ext_resource type="PackedScene" uid="uid://ckoqmkl27e0q2" path="res://Scenes/player.tscn" id="13_u50mg"]
+[ext_resource type="PackedScene" uid="uid://chicken_scene_main" path="res://Scenes/chicken.tscn" id="13_chicken"]
 [ext_resource type="Texture2D" uid="uid://otfpr0s4be5q" path="res://Assets/Elora's Art/SummerTileSet.png" id="42_kwxat"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_344ge"]
@@ -5605,3 +5606,12 @@ position = Vector2(27, 74)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -7)
 zoom = Vector2(4, 4)
+
+[node name="Chicken1" parent="." instance=ExtResource("13_chicken")]
+position = Vector2(100, 80)
+
+[node name="Chicken2" parent="." instance=ExtResource("13_chicken")]
+position = Vector2(150, 120)
+
+[node name="Chicken3" parent="." instance=ExtResource("13_chicken")]
+position = Vector2(80, 150)
