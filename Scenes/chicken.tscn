@@ -1,0 +1,267 @@
+[gd_scene load_steps=15 format=3 uid="uid://chicken_scene_main"]
+
+[ext_resource type="Script" path="res://Scripts/state_machine/chicken.gd" id="1_chicken"]
+[ext_resource type="Texture2D" uid="uid://cqv8y7h6bxh0h" path="res://Assets/Chicken/chicken-sprite-sheet.png" id="2_chicken"]
+[ext_resource type="Script" path="res://Scripts/state_machine/node_state_machine.gd" id="3_statemachine"]
+[ext_resource type="Script" path="res://Scripts/state_machine/chicken_idle_state.gd" id="4_idle"]
+[ext_resource type="Script" path="res://Scripts/state_machine/chicken_wander_state.gd" id="5_wander"]
+[ext_resource type="Script" path="res://Scripts/state_machine/chicken_peck_state.gd" id="6_peck"]
+[ext_resource type="Script" path="res://Scripts/state_machine/chicken_flap_state.gd" id="7_flap"]
+[ext_resource type="Script" path="res://Scripts/state_machine/chicken_bob_state.gd" id="8_bob"]
+[ext_resource type="Script" path="res://Scripts/state_machine/chicken_lay_egg_state.gd" id="9_layegg"]
+[ext_resource type="Script" path="res://Scripts/state_machine/chicken_squawk_state.gd" id="10_squawk"]
+[ext_resource type="AudioStream" uid="uid://b7v6u5t4s3r2q1p0" path="res://Assets/Chicken/chicken-squawk.wav" id="11_audio"]
+[ext_resource type="PackedScene" uid="uid://bj5h4g3f2e1d0c9b" path="res://Scenes/egg.tscn" id="12_egg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walk0"]
+atlas = ExtResource("2_chicken")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walk1"]
+atlas = ExtResource("2_chicken")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walk2"]
+atlas = ExtResource("2_chicken")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walk3"]
+atlas = ExtResource("2_chicken")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_peck0"]
+atlas = ExtResource("2_chicken")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_peck1"]
+atlas = ExtResource("2_chicken")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flap0"]
+atlas = ExtResource("2_chicken")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flap1"]
+atlas = ExtResource("2_chicken")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flap2"]
+atlas = ExtResource("2_chicken")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flap3"]
+atlas = ExtResource("2_chicken")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bob0"]
+atlas = ExtResource("2_chicken")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bob1"]
+atlas = ExtResource("2_chicken")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_layegg0"]
+atlas = ExtResource("2_chicken")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_layegg1"]
+atlas = ExtResource("2_chicken")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_layegg2"]
+atlas = ExtResource("2_chicken")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_layegg3"]
+atlas = ExtResource("2_chicken")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_squawk0"]
+atlas = ExtResource("2_chicken")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_squawk1"]
+atlas = ExtResource("2_chicken")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle0"]
+atlas = ExtResource("2_chicken")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle1"]
+atlas = ExtResource("2_chicken")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle2"]
+atlas = ExtResource("2_chicken")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle3"]
+atlas = ExtResource("2_chicken")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_chicken"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walk0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walk3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_peck0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_peck1")
+}],
+"loop": true,
+"name": &"peck",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flap0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flap1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flap2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flap3")
+}],
+"loop": true,
+"name": &"flap",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bob0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bob1")
+}],
+"loop": true,
+"name": &"bob",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_layegg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_layegg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_layegg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_layegg3")
+}],
+"loop": false,
+"name": &"layegg",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_squawk0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_squawk1")
+}],
+"loop": true,
+"name": &"squawk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_chicken"]
+radius = 6.0
+height = 18.0
+
+[node name="Chicken" type="CharacterBody2D" groups=["chicken"]]
+script = ExtResource("1_chicken")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_chicken")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("CapsuleShape2D_chicken")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_audio")
+volume_db = -5.0
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
+script = ExtResource("3_statemachine")
+initial_node_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="State Machine" node_paths=PackedStringArray("chicken", "animated_sprite_2d")]
+script = ExtResource("4_idle")
+chicken = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="Wander" type="Node" parent="State Machine" node_paths=PackedStringArray("chicken", "animated_sprite_2d")]
+script = ExtResource("5_wander")
+chicken = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="Peck" type="Node" parent="State Machine" node_paths=PackedStringArray("chicken", "animated_sprite_2d")]
+script = ExtResource("6_peck")
+chicken = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="Flap" type="Node" parent="State Machine" node_paths=PackedStringArray("chicken", "animated_sprite_2d")]
+script = ExtResource("7_flap")
+chicken = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="Bob" type="Node" parent="State Machine" node_paths=PackedStringArray("chicken", "animated_sprite_2d")]
+script = ExtResource("8_bob")
+chicken = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="LayEgg" type="Node" parent="State Machine" node_paths=PackedStringArray("chicken", "animated_sprite_2d")]
+script = ExtResource("9_layegg")
+chicken = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+egg_scene = ExtResource("12_egg")
+
+[node name="Squawk" type="Node" parent="State Machine" node_paths=PackedStringArray("chicken", "animated_sprite_2d", "audio_player")]
+script = ExtResource("10_squawk")
+chicken = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+audio_player = NodePath("../../AudioStreamPlayer2D")
